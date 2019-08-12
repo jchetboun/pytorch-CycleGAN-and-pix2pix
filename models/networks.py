@@ -563,7 +563,6 @@ class NLayerDiscriminator(nn.Module):
         if stride:
             sequence = [nn.Conv2d(input_nc, ndf, kernel_size=kw, stride=2, padding=padw), nn.LeakyReLU(0.2, True)]
         else:
-            print('AvgPool')
             sequence = [nn.Conv2d(input_nc, ndf, kernel_size=kw, stride=1, padding=padw), nn.LeakyReLU(0.2, True),
                         nn.AvgPool2d(2)]
         nf_mult = 1
@@ -578,7 +577,6 @@ class NLayerDiscriminator(nn.Module):
                     nn.LeakyReLU(0.2, True)
                 ]
             else:
-                print('AvgPool')
                 sequence += [
                     nn.Conv2d(ndf * nf_mult_prev, ndf * nf_mult, kernel_size=kw, stride=1, padding=padw, bias=use_bias),
                     nn.AvgPool2d(2),
