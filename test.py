@@ -62,5 +62,10 @@ if __name__ == '__main__':
         img_path = model.get_image_paths()     # get image paths
         if i % 5 == 0:  # save images to an HTML file
             print('processing (%04d)-th image... %s' % (i, img_path))
-        save_images(webpage, visuals, img_path, aspect_ratio=opt.aspect_ratio, width=opt.display_winsize)
+        img_path = data['A_paths']
+        visA = {k: visuals[k] for k in ('real_A', 'fake_B', 'rec_A') if k in visuals}
+        save_images(webpage, visA, img_path, aspect_ratio=opt.aspect_ratio, width=opt.display_winsize)
+        img_path = data['B_paths']
+        visB = {k: visuals[k] for k in ('real_B', 'fake_A', 'rec_B') if k in visuals}
+        save_images(webpage, visB, img_path, aspect_ratio=opt.aspect_ratio, width=opt.display_winsize)
     webpage.save()  # save the HTML
